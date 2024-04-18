@@ -12,6 +12,7 @@ Einige App Features sind
 -Archiv 
 -Statistik; Kuchendiagramm
 
+Persona: 
 
 Meine Interessen: Hämatologie, Medizin
 
