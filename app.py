@@ -47,9 +47,9 @@ with cols1[1]:
     st.markdown("<div style='min-height:30px;'>Zähler: {}</div>".format(st.session_state.box_counters[1]), unsafe_allow_html=True)
 
 with cols1[2]:
-    if st.button("Monozythen"):
+    if st.button("Monozyten"):
         increment_counter(2) 
-    st.image(image_paths[2], caption="Monozythen", use_column_width=True)
+    st.image(image_paths[2], caption="Monozyten", use_column_width=True)
     st.markdown("<div style='min-height:30px;'>Zähler: {}</div>".format(st.session_state.box_counters[2]), unsafe_allow_html=True)
 
 
