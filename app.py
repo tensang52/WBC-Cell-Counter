@@ -20,13 +20,13 @@ def undo_last_click():
         st.session_state.box_counters[last_index] -= 1  
         st.session_state.total_counter -= 1 
 
-st.title("Box Counter mit Bildern")
+st.title("WBC-Counter")
 
 image_paths = [
     "img/img1.png",
-    "img/img2.png",
-    "img/img3.png",
     "img/img4.png",
+    "img/img3.png",
+    "img/img2.png",
     "img/img5.png",
 ]
 
@@ -56,15 +56,15 @@ with cols1[2]:
 cols2 = st.columns(3)
 
 with cols2[0]:
-    if st.button("Dattel"):
+    if st.button("Lymphozyten"):
         increment_counter(3)  
-    st.image(image_paths[3], caption="Dattel", use_column_width=True)
+    st.image(image_paths[3], caption="Lymphozyten", use_column_width=True)
     st.markdown("<div style='min-height:30px;'>Zähler: {}</div>".format(st.session_state.box_counters[3]), unsafe_allow_html=True)
 
 with cols2[1]:
-    if st.button("Erdbeere"):
+    if st.button("Eosinophile"):
         increment_counter(4) 
-    st.image(image_paths[4], caption="Erdbeere", use_column_width=True)
+    st.image(image_paths[4], caption="Eosinophile", use_column_width=True)
     st.markdown("<div style='min-height:30px;'>Zähler: {}</div>".format(st.session_state.box_counters[4]), unsafe_allow_html=True)
 
 
@@ -96,7 +96,7 @@ if st.session_state.total_counter >= 100:
     st.markdown("**Ziel erreicht!**")
 
 
-labels = ["Segmentkernige Granulozyten", "Stabkernige Granulozyten", "Monozythen", "Dattel", "Erdbeere"]
+labels = ["Segmentkernige Granulozyten", "Stabkernige Granulozyten", "Monozythen", "Lymphozyten", "Eosinophile"]
 sizes = st.session_state.box_counters  
 total = st.session_state.total_counter 
 
