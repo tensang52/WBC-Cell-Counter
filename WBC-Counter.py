@@ -13,13 +13,15 @@ def increment_counter(index):
     st.session_state.box_counters[index] += 1 
     st.session_state.total_counter += 1  
     st.session_state.click_history.append(index)  
-
+    st.experimental_rerun()
+    
 def undo_last_click():
     if st.session_state.click_history:
         last_index = st.session_state.click_history.pop() 
         st.session_state.box_counters[last_index] -= 1  
         st.session_state.total_counter -= 1 
-
+        st.experimental_rerun()
+        
 st.title("WBC-Counter")
 
 image_paths = [
