@@ -8,6 +8,7 @@ Funktionen bis zum 5.5.2024 (erledigt)
 Funktionen bis zum 12.05.2024 (in Bearbeitung)
 -Zählfunktion optimieren, indem auf das Bild statt Wort geklickt wird
 -Zählung zu einem Patienten zuordnen
+-Tabs einfügen
 
 Funktionen bis zum 19.05.2024 (geplant, falls zeitliche Ressource)
 -Archivfunktion
