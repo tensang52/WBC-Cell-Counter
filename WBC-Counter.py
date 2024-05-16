@@ -66,8 +66,8 @@ image_paths = [
     "img/img1.png",
     "img/img2.png",
     "img/img3.png",
-    "img/img4.jpg",
-    "img/img5.jpg",
+    "img/img4.png",
+    "img/img5.png",
 ]
 
 cols1 = st.columns(3)
