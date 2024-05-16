@@ -63,11 +63,11 @@ patient_id = st.sidebar.text_input("Patient ID")
 st.title("WBC-Counter")
 
 image_paths = [
-    "img/Eosinophile.jpg",
-    "img/Lymphozyten.jpg",
-    "img/Monozyten.jpg",
-    "img/Segmentkernige Granulozyten.jpg",
-    "img/Stabkernige Granulozyten.jpg",
+    "img/img1.png",
+    "img/img2.png",
+    "img/img3.png",
+    "img/img4.jpg",
+    "img/img5.jpg",
 ]
 
 cols1 = st.columns(3)
