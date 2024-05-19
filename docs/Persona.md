@@ -14,3 +14,5 @@ Das sind meine Ziele: ein Lernmaterial für Studenten bieten, Verständnis für 
 Das ist mein Problem: Fehlerquellen bei der manuellen Zählung , das Zählen der weissen Blutzellen würde Zeit sparen und effizienter sein
 
 Meine Lieblings-App: DocCheck Flexikon, Körperlehre
+
+Dieses Profil beschreibt Studenten, die sich auf die Hämatologie spezialisiert haben und regelmässig Blutzellen zählen müssen. Ihr Ziel ist es, ihre Fähigkeiten und Kenntnisse in diesem Fachgebiet zu vertiefen, um ihre Arbeit effizienter und präziser zu gestalten. Ein besonderes Augenmerk liegt dabei auf der Reduzierung von Fehlerquellen bei der manuellen Zählung der Blutzellen.
