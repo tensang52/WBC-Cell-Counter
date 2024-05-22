@@ -2,16 +2,17 @@ import streamlit as st
 import plotly.graph_objects as go
 import pandas as pd
 from datetime import datetime
+from PIL import Image
+
 # Create tabs
-tab1, tab2, tab3 = st.tabs(["Counter", "Fortschrittanzeiger", "Differentialdiagramme"])
+tab1, tab3, tab2 = st.tabs(["Counter", "Resultate", "Referenzliste"])
 
 with tab1:
-    
     # Initialize session state variables
     if "total_counter" not in st.session_state:
         st.session_state.total_counter = 0
     if "box_counters" not in st.session_state:
-        st.session_state.box_counters = [0, 0, 0, 0, 0]
+        st.session_state.box_counters = [0] * 13  # Updated for 13 cell types
     if "click_history" not in st.session_state:
         st.session_state.click_history = []
     if "is_saved" not in st.session_state:
@@ -34,17 +35,25 @@ with tab1:
             st.experimental_rerun()
 
     def save_data():
-        if patient_name and patient_birthdate and patient_gender and patient_id:
+        if sample_name and sample_birthdate and sample_gender and sample_id:
             data = {
-                "Patient ID": [patient_id],
-                "Name": [patient_name],
-                "Birthdate": [patient_birthdate.strftime("%Y-%m-%d")],
-                "Gender": [patient_gender],
-                "Segmentkernige Granulozyten": [st.session_state.box_counters[0]],
-                "Stabkernige Granulozyten": [st.session_state.box_counters[1]],
+                "Sample ID": [sample_id],
+                "Name": [sample_name],
+                "Birthdate": [sample_birthdate.strftime("%Y-%m-%d")],
+                "Gender": [sample_gender],
+                "Segmentkernige G.": [st.session_state.box_counters[0]],
+                "Stabkernige G.": [st.session_state.box_counters[1]],
                 "Monozyten": [st.session_state.box_counters[2]],
                 "Lymphozyten": [st.session_state.box_counters[3]],
-                "Eosinophile": [st.session_state.box_counters[4]],
+                "Basophile": [st.session_state.box_counters[4]],
+                "Eosinophile": [st.session_state.box_counters[5]],
+                "Erythroblasten": [st.session_state.box_counters[6]],
+                "Metamyelozyt": [st.session_state.box_counters[7]],
+                "Myeloblast": [st.session_state.box_counters[8]],
+                "Myelozyt": [st.session_state.box_counters[9]],
+                "Plasmazelle": [st.session_state.box_counters[10]],
+                "Promyelozyt": [st.session_state.box_counters[11]],
+                "Unbekannt": [st.session_state.box_counters[12]],
                 "Total": [st.session_state.total_counter],
                 "Date": [datetime.now().strftime("%Y-%m-%d %H:%M:%S")]
             }
@@ -52,128 +61,96 @@ with tab1:
             df = pd.DataFrame(data)
             df.to_csv("archive.csv", mode='a', header=not pd.io.common.file_exists("archive.csv"), index=False)
             st.session_state.is_saved = True
-            st.sidebar.success("Data saved to archive.")
+            st.sidebar.success("Daten in Archiv gespeichert.")
         else:
-            st.sidebar.error("Please enter all patient information.")
+            st.sidebar.error("Bitte alle Probeninformationen eingeben.")
 
-    # Sidebar for patient information
-    st.sidebar.title("Patient Information")
-    patient_name = st.sidebar.text_input("Name")
-    patient_birthdate = st.sidebar.date_input("Birthdate")
-    patient_gender = st.sidebar.selectbox("Gender", ["Male", "Female", "Other"])
-    patient_id = st.sidebar.text_input("Patient ID")
+    # Sidebar for sample information
+    st.sidebar.title("Probeninformationen")
+    sample_name = st.sidebar.text_input("Name")
+    sample_birthdate = st.sidebar.date_input("Geburtsdatum")
+    sample_gender = st.sidebar.selectbox("Geschlecht", ["Männlich", "Weiblich", "Andere"])
+    sample_id = st.sidebar.text_input("Proben-ID")
 
     # Main content
     st.title("WBC-Counter")
+    st.markdown(f"Gesamtzähler: {st.session_state.total_counter}")
 
     image_paths = [
-    "img/Segmentkernige G..jpg",
-    "img/Stabkernige G..jpg",
-    "img/Monozyten.jpg",
-    "img/Lymphozyten.jpg",
-    "img/Eosinophile.jpg",
-    "img/Basophile.jpg",
-    "img/Erythroblasten.jpg",
-    "img/Myeoloblast.jpg",
-    "img/Myeolozyt.jpg",
-    "img/Plasmazelle.jpg",
-    "img/Promyeolozyt.jpg",
-    "img/Metamyeolozyt.jpg",
-    "img/Unbekannt.jpg",
+        "img/Segmentkernige G..jpg",
+        "img/Stabkernige G..jpg",
+        "img/Monozyten.jpg",
+        "img/Lymphozyten.jpg",
+        "img/Basophile.jpg",
+        "img/Eosinophile.jpg",
+        "img/Erythroblasten.jpg",
+        "img/Metamyelozyt.jpg",
+        "img/Myeloblast.jpg",
+        "img/Myelozyt.jpg",
+        "img/Plasmazelle.jpg",
+        "img/Promyelozyt.jpg",
+        "img/Unbekannt.jpg",
     ]
 
-    cols1 = st.columns(3)
+    # Define labels and colors
+    labels = [
+        "Segmentkernige G.", "Stabkernige G.", "Monozyten", "Lymphozyten", "Basophile", "Eosinophile",
+        "Erythroblasten", "Metamyelozyt", "Myeloblast", "Myelozyt", "Plasmazelle", "Promyelozyt", "Unbekannt"
+    ]
+    colors = [
+        "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b",
+        "#e377c2", "#7f7f7f", "#bcbd22", "#17becf", "#aec7e8", "#ffbb78", "#98df8a"
+    ]
 
-    with cols1[0]:
-        if st.button("Segmentkernige G."):
-            increment_counter(0)
-        st.image(image_paths[0], caption="Segmentkernige Granulozyten", use_column_width=True)
-        st.markdown("<div style='min-height:30px;'>Zähler: {}</div>".format(st.session_state.box_counters[0]),
-                    unsafe_allow_html=True)
-
-    with cols1[1]:
-        if st.button("Stabkernige Granulozyten"):
-            increment_counter(1)
-        st.image(image_paths[1], caption="Stabkernige Granulozyten", use_column_width=True)
-        st.markdown("<div style='min-height:30px;'>Zähler: {}</div>".format(st.session_state.box_counters[1]), unsafe_allow_html=True)
-
-    with cols1[2]:
-        if st.button("Monozyten"):
-            increment_counter(2)
-        st.image(image_paths[2], caption="Monozyten", use_column_width=True)
-        st.markdown("<div style='min-height:30px;'>Zähler: {}</div>".format(st.session_state.box_counters[2]), unsafe_allow_html=True)
-
-    cols2 = st.columns(3)
-
-    with cols2[0]:
-        if st.button("Lymphozyten"):
-            increment_counter(3)
-        st.image(image_paths[3], caption="Lymphozyten", use_column_width=True)
-        st.markdown("<div style='min-height:30px;'>Zähler: {}</div>".format(st.session_state.box_counters[3]), unsafe_allow_html=True)
-
-    with cols2[1]:
-        if st.button("Eosinophile"):
-            increment_counter(4)
-        st.image(image_paths[4], caption="Eosinophile", use_column_width=True)
-        st.markdown("<div style='min-height:30px;'>Zähler: {}</div>".format(st.session_state.box_counters[4]), unsafe_allow_html=True)
+    # Create UI elements for each cell type
+    for i, (label, image_path) in enumerate(zip(labels, image_paths)):
+        if i % 6 == 0:
+            cols = st.columns(6)
+        with cols[i % 6]:
+            if st.session_state.total_counter < 200:  # Added to limit counting
+                img = Image.open(image_path)
+                st.image(img.resize((100, 100)), caption=label, use_column_width=True)
+                if st.button(f"Zähle {label}"):
+                    increment_counter(i)
+                st.markdown(f"<div style='text-align:center; font-size:12px;'>Zähler: {st.session_state.box_counters[i]}</div>", unsafe_allow_html=True)
 
     if st.button("Letzten Klick rückgängig machen"):
         undo_last_click()
 
-    st.markdown(
-        f"<div style='text-align:center; font-size:80px; color: red;'>Gesamtzähler: {st.session_state.total_counter}</div>",
-        unsafe_allow_html=True,
-    )
-    cols3 = st.columns(3)
-
-with cols1[0]:
-    if st.button("Basophile"):
-        increment_counter(0)
-    st.image(image_paths[0], caption="Basophile", use_column_width=True)
-    st.markdown("<div style='min-height:30px;'>Zähler: {}</div>".format(st.session_state.box_counters[0]),
-                unsafe_allow_html=True)
-
-with cols1[1]:
-    if st.button("Erythroblasten"):
-        increment_counter(1)
-    st.image(image_paths[1], caption="Erythroblasten", use_column_width=True)
-    st.markdown("<div style='min-height:30px;'>Zähler: {}</div>".format(st.session_state.box_counters[1]), unsafe_allow_html=True)
-
-with cols1[2]:
-    if st.button("Myeoloblast"):
-        increment_counter(2)
-    st.image(image_paths[2], caption="Myeoloblast", use_column_width=True)
-    st.markdown("<div style='min-height:30px;'>Zähler: {}</div>".format(st.session_state.box_counters[2]), unsafe_allow_html=True)
-
-
-with tab2:
-    st.header("WBC-Counter")
-    progress = 2*(st.session_state.total_counter / 200 * 100)
-    fig = go.Figure(
-        go.Indicator(
-            mode="gauge+number",
-            value=progress,
-            gauge={"axis": {"range": [0, 100]}, "bar": {"color": "red"}},
-            domain={"x": [0, 1], "y": [0, 1]}
-        )
-    )
-    fig.update_layout(title="Fortschrittsanzeige")
-
-    st.plotly_chart(fig, use_container_width=True)
-
     if st.session_state.total_counter >= 200:
-        st.markdown("**Ziel erreicht!**")
+        st.markdown("Ziel erreicht!")
+        st.button("Daten speichern", on_click=save_data)  # Added to save data manually
 
 with tab3:
-    st.header("Differentialdiagramme")
-    labels = ["Segmentkernige Granulozyten", "Stabkernige Granulozyten", "Monozyten", "Lymphozyten", "Eosinophile"]
-    sizes = st.session_state.box_counters
+    st.header("Resultate")
     total = st.session_state.total_counter
+    percentages = [count / total * 100 if total > 0 else 0 for count in st.session_state.box_counters]
 
-    percentages = [count / total * 100 if total > 0 else 0 for count in sizes]
-
-    fig = go.Figure(data=[go.Pie(labels=labels, values=percentages, hole=0.4, textinfo='percent')])
+    fig = go.Figure(data=[go.Pie(labels=labels, values=percentages, hole=0.4, textinfo='percent', marker=dict(colors=colors))])
     fig.update_layout(title_text="Prozentualer Anteil der Klicks")
 
     st.plotly_chart(fig, use_container_width=True)
+
+with tab2:
+    st.header("Referenzliste")
+    reference_values = {
+        "Segmentkernige G.": 60,
+        "Stabkernige G.": 3,
+        "Monozyten": 6,
+        "Lymphozyten": 30,
+        "Basophile": 1,
+        "Eosinophile": 2,
+        "Erythroblasten": 0,
+        "Metamyelozyt": 0.5,
+        "Myeloblast": 0,
+        "Myelozyt": 0.5,
+        "Plasmazelle": 0,
+        "Promyelozyt": 0,
+        "Unbekannt": 0
+    }
+
+    fig_ref = go.Figure(data=[go.Pie(labels=list(reference_values.keys()), values=list(reference_values.values()), hole=0.4, textinfo='percent', marker=dict(colors=colors))])
+    fig_ref.update_layout(title_text="Referenzwerte der Zelltypen")
+
+    st.plotly_chart(fig_ref, use_container_width=True)
 
