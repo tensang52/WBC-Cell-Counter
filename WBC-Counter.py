@@ -4,21 +4,22 @@ import pandas as pd
 from datetime import datetime
 from PIL import Image
 
-# Create tabs
+# Erstellen der Tabs
 tab1, tab3, tab2, tab4, tab5 = st.tabs(["Counter", "Resultate", "Referenzliste", "Informationen", "Leukozyten"])
 
+# Tab 1: Counter
 with tab1:
-    # Initialize session state variables
+    # Initialisieren von Session-Status-Variablen
     if "total_counter" not in st.session_state:
         st.session_state.total_counter = 0
     if "box_counters" not in st.session_state:
-        st.session_state.box_counters = [0] * 13  # Updated for 13 cell types
+        st.session_state.box_counters = [0] * 13  # Aktualisiert für 13 Zelltypen
     if "click_history" not in st.session_state:
         st.session_state.click_history = []
     if "is_saved" not in st.session_state:
         st.session_state.is_saved = False
 
-    # Functions to increment counters and undo last click
+    # Funktionen zum Erhöhen der Zähler und Rückgängig machen des letzten Klicks
     def increment_counter(index):
         st.session_state.box_counters[index] += 1
         st.session_state.total_counter += 1
@@ -65,14 +66,14 @@ with tab1:
         else:
             st.sidebar.error("Bitte alle Probeninformationen eingeben.")
 
-    # Sidebar for sample information
+    # Seitenleiste für Probeninformationen
     st.sidebar.title("Probeninformationen")
     sample_name = st.sidebar.text_input("Name")
     sample_birthdate = st.sidebar.date_input("Geburtsdatum")
     sample_gender = st.sidebar.selectbox("Geschlecht", ["Männlich", "Weiblich", "Andere"])
     sample_id = st.sidebar.text_input("Proben-ID")
 
-    # Main content
+    # Hauptinhalt
     st.title("WBC-Counter")
     st.markdown(f"Gesamtzähler: {st.session_state.total_counter}")
 
@@ -92,7 +93,7 @@ with tab1:
         "img/Unbekannt.jpg",
     ]
 
-    # Define labels and colors
+    # Definieren der Labels und Farben 
     labels = [
         "Segmentkernige G.", "Stabkernige G.", "Monozyten", "Lymphozyten", "Basophile", "Eosinophile",
         "Erythroblasten", "Metamyelozyt", "Myeloblast", "Myelozyt", "Plasmazelle", "Promyelozyt", "Unbekannt"
@@ -102,12 +103,12 @@ with tab1:
         "#e377c2", "#7f7f7f", "#bcbd22", "#17becf", "#aec7e8", "#ffbb78", "#98df8a"
     ]
 
-    # Create UI elements for each cell type
+    # Erstellen der UI-Elemente für jeden Zelltyp
     for i, (label, image_path) in enumerate(zip(labels, image_paths)):
         if i % 6 == 0:
             cols = st.columns(6)
         with cols[i % 6]:
-            if st.session_state.total_counter < 200:  # Added to limit counting
+            if st.session_state.total_counter < 200:  # Hinzugefügt, um das Zählen zu begrenzen
                 img = Image.open(image_path)
                 st.image(img.resize((100, 100)), caption=label, use_column_width=True)
                 if st.button(f"Zähle {label}"):
@@ -119,8 +120,9 @@ with tab1:
 
     if st.session_state.total_counter >= 200:
         st.markdown("Ziel erreicht!")
-        st.button("Daten speichern", on_click=save_data)  # Added to save data manually
+        st.button("Daten speichern", on_click=save_data)  # Hinzugefügt, um Daten manuell zu speichern
 
+# Tab 3: Resultate
 with tab3:
     st.header("Resultate")
     total = st.session_state.total_counter
@@ -131,6 +133,7 @@ with tab3:
 
     st.plotly_chart(fig, use_container_width=True)
 
+# Tab 2: Referenzliste
 with tab2:
     st.header("Referenzliste")
     reference_values = {
@@ -154,6 +157,7 @@ with tab2:
 
     st.plotly_chart(fig_ref, use_container_width=True)
 
+# Tab 4: Informationen zur App 
 with tab4:
     st.header("Informationen")
     st.markdown("""
@@ -174,6 +178,7 @@ with tab4:
     - Stellen Sie sicher, dass alle Probeninformationen korrekt eingegeben wurden, bevor Sie die Daten speichern.
     """)
 
+# Tab 5: Leukozyten Text, mit Informationen zu jedem Zelltypen 
 with tab5:
     st.header("Leukozyten")
     st.subheader("Segmentkernige Granulozyten")
