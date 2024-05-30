@@ -8,6 +8,6 @@
 
 ###### Learnings
 
-**Nicht Aufgeben**: Codieren war schwierig, da man vieles in kurzer Zeit lernen und immer wieder anpassen musste. Jedoch haben wir gelernt, dass es wichtig ist, nicht aufzugeben und einander zu motivieren. 
-**Kompromissbereitschaft**: Bei der Ideenfindung haben wir festgestellt, dass es wichtig ist, Kompromisse einzugehen, sei es bei der Gruppenarbeit oder bei der Layoutgestaltung. 
+**Nicht Aufgeben**: Codieren war schwierig, da man vieles in kurzer Zeit lernen und immer wieder anpassen musste. Jedoch haben wir gelernt, dass es wichtig ist, nicht aufzugeben und einander zu motivieren. <br><br>
+**Kompromissbereitschaft**: Bei der Ideenfindung haben wir festgestellt, dass es wichtig ist, Kompromisse einzugehen, sei es bei der Gruppenarbeit oder bei der Layoutgestaltung. <br><br>
 **Den Prozess geniessen**: Es ist auch wichtig, den Prozess der Gruppenarbeit zu geniessen, um das Arbeiten zu erleichtern.
