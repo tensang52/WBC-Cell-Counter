@@ -5,7 +5,7 @@ from datetime import datetime
 from PIL import Image
 
 # Create tabs
-tab1, tab3, tab2 = st.tabs(["Counter", "Resultate", "Referenzliste"])
+tab1, tab3, tab2, tab4, tab5 = st.tabs(["Counter", "Resultate", "Referenzliste", "Informationen", "Leukozyten"])
 
 with tab1:
     # Initialize session state variables
@@ -154,3 +154,54 @@ with tab2:
 
     st.plotly_chart(fig_ref, use_container_width=True)
 
+with tab4:
+    st.header("Informationen")
+    st.markdown("""
+    ### Anwendung für den WBC-Counter 
+    Diese App ermöglicht die Zählung und Speicherung von verschiedenen Typen weisser Blutkörperchen. 
+    Die erfassten Daten können anschliessend visualisiert und mit Referenzwerten verglichen werden.
+
+    #### Nutzung der App:
+    1. Probeninformationen eingeben: Geben Sie die erforderlichen Probeninformationen in der Seitenleiste ein.
+    2. Zellen zählen: Klicken Sie auf die entsprechenden Buttons, um die verschiedenen Zelltypen zu zählen.
+    3. Ergebnisse ansehen: Die Ergebnisse können im Tab "Resultate" visualisiert werden.
+    4. Referenzwerte: Im Tab "Referenzliste" können Sie die Referenzwerte für die verschiedenen Zelltypen einsehen.
+    5. Daten speichern: Wenn die Zählung abgeschlossen ist, können die Daten gespeichert werden.
+
+    #### Hinweise:
+    - Die Zählung wird bei 200 Zellen automatisch gespeichert.
+    - Sie können den letzten Klick rückgängig machen, indem Sie auf den entsprechenden Button klicken.
+    - Stellen Sie sicher, dass alle Probeninformationen korrekt eingegeben wurden, bevor Sie die Daten speichern.
+    """)
+
+with tab5:
+    st.header("Leukozyten")
+    st.subheader("Segmentkernige Granulozyten")
+    st.write("Die Segmentkernigen Neutrophilen sind granuläre Zellen mit einem mehrteiligen Kern und einer leicht rosafarbenen bis neutralen Zytoplasmafarbe. Sie sind normalerweise die zahlreichsten Leukozyten im Blutkreislauf.")
+
+    st.subheader("Stabkernige Granulozyten")
+    st.write("Die Stabkernigen Neutrophilen ähneln den Segmentkernigen Neutrophilen, jedoch ist ihr Kern in der Regel länglich und nicht in mehrere Segmente unterteilt.")
+    
+    st.subheader("Basophile Leukozyten")
+    st.write("Basophile Leukozyten sind ebenfalls granuläre Zellen, jedoch sind ihre Granula aufgrund ihrer hohen Dichte an entzündungsfördernden Substanzen oft dunkelblau oder violett gefärbt.")
+    
+    st.subheader("Eosinophile Leukozyten")
+    st.write("Eosinophile Leukozyten haben granuläre Zellen, deren Granula eine charakteristische rote bis orange Farbe haben. Der Kern ist oft bilobulär und gut sichtbar.")
+    
+    st.subheader("Monozyten")
+    st.write("Monozyten sind große Zellen mit einem unregelmäßig geformten Kern und einem bläulich-grauen Zytoplasma. Sie können variabel in ihrer Größe sein und haben eine gewisse Ähnlichkeit mit Makrophagen.")
+    
+    st.subheader("Vorstufen der Granulozyten")
+    st.write("Die Vorstufen der Granulozyten gehören zu den unreifen Zellen im Knochenmark, die sich zu den verschiedenen Arten von Granulozyten entwickeln.")
+    st.write("Diese Vorläuferzellen umfassen Myeloblasten, Promyelozyten, Myelozyten und Metamyelozyten.")
+    st.write("Myeloblasten sind die frühesten erkennbaren Vorläuferzellen der Granulozyten und sind große Zellen mit einem hohen Kern-zu-Zytoplasma-Verhältnis und einem unregelmäßig geformten Kern.")
+    st.write("Promyelozyten haben einen größeren Kern als Myeloblasten und beginnen, spezifische Granula im Zytoplasma zu entwickeln.")
+    st.write("Myelozyten haben einen runden bis ovalen Kern und ihr Zytoplasma ist zunehmend granulär, wobei die Granula spezifischer und deutlicher werden.")
+    st.write("Metamyelozyten sind fast vollständig differenzierte Vorläuferzellen mit einem leicht segmentierten Kern und einem Zytoplasma, das reich an spezifischen Granula ist.")
+    
+    st.subheader("Weitere wichtige Leukozyten")
+    st.write("Neben den genannten Leukozyten spielen auch Erythroblasten eine wichtige Rolle im Körper.")
+    st.write("Sie sind die Vorläufer der roten Blutkörperchen und werden im Knochenmark gebildet. Rote Blutkörperchen sind entscheidend für den Sauerstofftransport im Körper.")
+    st.write("Plasmazellen sind spezialisierte Zellen des Immunsystems, die Antikörper produzieren. Diese Antikörper sind wichtig für die Erkennung und Neutralisierung von Krankheitserregern.")
+
+    st.markdown("[Link zu Erythrozyt im Flexikon](https://flexikon.doccheck.com/de/Leukozyt)")
