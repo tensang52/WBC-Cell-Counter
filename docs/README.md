@@ -24,6 +24,8 @@ Die App ermöglicht die Zählung und Differenzierung der folgenden Untergruppen 
     Erythroblasten
     Unbekannte/Diverses
 
+Insgesamt haben wir 13 weisse Blutzellen, wovon die ersten sechs normalerweise im peripheren Blutbild vorkommen. Die weiteren sechs sind Vorstufen und sollten nicht oder in geringer Anzahl im peripheren Blutbild vorkommen. Die letzte Zelle trägt den Namen Unbekannte/Diverses, da in der Hämatologie oftmals Zellen nicht eindeutig zugeordnet werden können. In der App WBC Counter sind diese Blutzellen entsprechend dieser Unterteilung in drei Reihen sortiert. 
+
 App Features:
 
 Automatisches Beenden bei 200 differenzierten Blutzellen: Die App beendet die Zählung automatisch, sobald 200 differenzierte Blutzellen erreicht sind. Dies spart Zeit und sorgt für Konsistenz in der Zählung.
