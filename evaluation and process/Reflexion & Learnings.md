@@ -1,4 +1,4 @@
-#Reflexion
+###### Reflexion
 
 **Code schreiben**: Am Anfang hatten wir Mühe, den geschriebenen Code in Streamlit zu öffnen. Es gab auch weitere kleinere Hürden wie zum Beispiel das Hochladen eines Bildes. Doch durch Fragen an unsere Dozenten und die Zusammenarbeit in der Gruppe konnten wir diese Probleme allmählich beseitigen.
 **Gruppenarbeit**: Ebenfalls war es hilfreich, in Gruppen zu arbeiten. Dadurch konnte man sich gegenseitig austauschen und überprüfen, ob der Code bei allen korrekt angezeigt wird und funktioniert. 
@@ -6,7 +6,7 @@
 
 
 
-#Learnings
+###### Learnings
 
 **Nicht Aufgeben**: Codieren war schwierig, da man vieles in kurzer Zeit lernen und immer wieder anpassen musste. Jedoch haben wir gelernt, dass es wichtig ist, nicht aufzugeben und einander zu motivieren. 
 **Kompromissbereitschaft**: Bei der Ideenfindung haben wir festgestellt, dass es wichtig ist, Kompromisse einzugehen, sei es bei der Gruppenarbeit oder bei der Layoutgestaltung. 
