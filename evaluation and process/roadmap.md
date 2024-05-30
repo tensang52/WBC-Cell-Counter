@@ -11,6 +11,18 @@ Funktionen bis zum 12.05.2024 (in Bearbeitung)
 -Tabs einfügen
 
 Funktionen bis zum 19.05.2024 (geplant, falls zeitliche Ressource)
--Archivfunktion
--User Login
+-Speicherfunktion
 -Vorstufen der weissen Blutzellen
+-User Testing 
+
+Demo Day bis 23.05.2024
+-HDMI Anschluss Testen
+-Presentation üben
+-App möglichst funktionsfähig haben
+
+Abgabe bis 03.06.2024
+-App überarbeiten/finalisieren
+-strukturierung GitHub 
+-Reflexion 
+
+
