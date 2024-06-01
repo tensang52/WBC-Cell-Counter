@@ -54,11 +54,11 @@ Die App ist praktisch und übersichtlich gestaltet.
 Es fehlt ein Referenzbereich, und das Archiv ist nicht genau beschrieben, was dort gespeichert wird.
 
 ## Neue Ideen?
-    Patientenakte
-    Referenzbereich
-    Erfassung aller Leukozyten im Blutbild
-    Freiwillige Login-Registrierung
+Patientenakte
+Referenzbereich
+Erfassung aller Leukozyten im Blutbild
+Freiwillige Login-Registrierung
 
 ## Neue Probleme?
-    Der Code zum Erstellen der Login-Registrierung und des Archivs könnte schwierig sein.
-    Es ist unklar, wo die Login-Registrierung platziert werden soll.
+Der Code zum Erstellen der Login-Registrierung und des Archivs könnte schwierig sein.
+Es ist unklar, wo die Login-Registrierung platziert werden soll.
